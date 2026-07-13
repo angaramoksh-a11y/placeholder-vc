@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placeholder — a venture capital firm</title>
+<meta name="description" content="Placeholder is a New York venture capital firm investing in decentralized information networks. Partners Joel Monegro and Chris Burniske. 75+ investments since 2017.">
+<meta property="og:title" content="Placeholder — a venture capital firm">
+<meta property="og:description" content="We work with entrepreneurs and decentralized information networks to better distribute data, wealth, and power.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f4f1e8'/%3E%3Cpath d='M18 14h10v6h-4v24h4v6H18zM46 14H36v6h4v24h-4v6h10z' fill='%238f2d24'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — locked scale, one gutter, one rhythm ============ */
+:root{
+  --h1: clamp(2.4rem, 5vw, 4rem);
+  --h2: clamp(1.8rem, 3.2vw, 2.6rem);
+  --h3: clamp(1.35rem, 2.2vw, 1.7rem);
+  --h4: 1.2rem;  --h5: 1.05rem;  --h6: 0.95rem;
+  --p: 1.05rem;  --small: 0.85rem;  --eyebrow: 0.72rem;
+  --lh-tight: 1.12;  --lh-body: 1.6;
+  --ls-eyebrow: .14em;
+
+  --gutter: clamp(20px, 15vw, 220px);
+  --sec-pad: clamp(4.5rem, 10vw, 8.5rem);
+
+  --paper: #f4f1e8;
+  --bone:  #ebe7d8;
+  --card:  #fcfbf6;
+  --ink:   #1d1a14;
+  --ink-2: #241f18;
+  --muted: #5a5343;
+  --faint: #645c48;               /* AA-fixed: was #6f6753 (4.53:1 on bone) — now 5.35:1 bone / 5.87:1 paper */
+  --line:  rgba(29,26,20,.16);
+  --accent:#8f2d24;
+
+  --serif: "Source Serif 4", Georgia, serif;   /* readability swap: Fraunces → Source Serif 4 */
+  --sans: "Hanken Grotesk", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  --sheet: 0 1px 0 rgba(29,26,20,.04), 0 12px 26px -20px rgba(29,26,20,.38);
+}
+@media (max-width: 620px){ :root{ --gutter: 26px; } }
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:var(--p); line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:clip;
+}
+::selection{ background:var(--accent); color:var(--paper); }
+a{ color:inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:1px; }
+h1,h2,h3{ font-family:var(--serif); font-weight:400; line-height:var(--lh-tight); letter-spacing:-0.01em; }
+h1{ font-size:var(--h1); } h2{ font-size:var(--h2); } h3{ font-size:var(--h3); }
+h1 em, h2 em, .display em{ font-style:italic; color:var(--accent); font-weight:400; }
+
+.wrap{ padding-left:var(--gutter); padding-right:var(--gutter); }
+section{ padding-top:var(--sec-pad); padding-bottom:var(--sec-pad); }
+
+/* ============ PAPER — the whole site is one working document ============ */
+/* grain sits ABOVE every surface (bands, cards, footer) so the tooth is site-wide, not just body-bg */
+body::before{
+  content:""; position:fixed; inset:0; z-index:120; pointer-events:none; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .11 0 0 0 0 .10 0 0 0 0 .08 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* ledger margin-rule down the left gutter — the legal-pad line */
+body::after{
+  content:""; position:fixed; top:0; bottom:0; z-index:2; pointer-events:none;
+  left:clamp(14px, calc(var(--gutter) - 2.6rem), 999px); width:1px;
+  background:color-mix(in srgb, var(--accent) 26%, transparent);
+}
+@media (max-width: 900px){ body::after{ display:none; } }
+main, header.nav, footer{ position:relative; z-index:1; }
+
+/* ============ eyebrow — the bracket motif (their real mark) ============ */
+.eyebrow{
+  font-family:var(--mono); font-size:var(--eyebrow); font-weight:500;
+  letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint);
+}
+.eyebrow::before{ content:"[\00a0"; color:var(--accent); }
+.eyebrow::after{ content:"\00a0]"; color:var(--accent); }
+
+.rule{ height:1px; background:linear-gradient(90deg, var(--line), transparent); border:0; }
+
+/* ============ STORYBOARD badge + ribbon (stripped in prod) ============ */
+.sb-badge{
+  position:fixed; top:16px; right:16px; padding:4px 10px; font-size:0.72rem;
+  letter-spacing:.14em; text-transform:uppercase; border:1px solid currentColor;
+  z-index:999; font-family:var(--mono); color:var(--ink); background:var(--paper);
+}
+.ribbon{
+  position:fixed; bottom:16px; left:16px; z-index:999;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--paper); background:var(--ink); padding:6px 12px;
+}
+
+/* ============ OPENING — closed brackets part, the name appears, the page rises ============
+   CSS-only: every state resolves via animation-fill forwards, so a dead script can never
+   leave the page blanked. html.intro is set by the head script ONLY when motion is allowed
+   and the intro hasn't played this visit. */
+#veil{
+  position:fixed; inset:0; z-index:2000; display:none;
+  align-items:center; justify-content:center; background:var(--paper);
+}
+#veil::before{ /* same tooth as the page, so the veil reads as the same sheet */
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .11 0 0 0 0 .10 0 0 0 0 .08 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html.intro #veil{ display:flex; animation:veilOut .6s ease 1.75s forwards; }
+.iv-mark{
+  display:flex; align-items:baseline; position:relative;
+  font-family:var(--serif); font-weight:500; letter-spacing:-.01em; color:var(--ink);
+  font-size:clamp(2.2rem, 6.5vw, 3.8rem);
+}
+html.intro .iv-mark{ animation:markIn .4s ease both, markSettle .6s cubic-bezier(.22,1,.36,1) 1.75s forwards; }
+.iv-bk{ font-family:var(--mono); font-weight:400; color:var(--accent); font-size:1.05em; }
+.iv-word{
+  display:inline-block; overflow:hidden; white-space:nowrap;
+  max-width:0; opacity:0; margin:0 .09em; /* margin keeps the closed brackets reading "[ ]" */
+}
+html.intro .iv-word{ animation:wordIn 1.05s cubic-bezier(.22,1,.36,1) .45s forwards; }
+@keyframes markIn{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes wordIn{
+  0%{ max-width:0; opacity:0; filter:blur(5px); }
+  55%{ opacity:1; }
+  100%{ max-width:6.6em; opacity:1; filter:blur(0); }
+}
+@keyframes markSettle{ to{ transform:translateY(-5px); opacity:0; } }
+@keyframes veilOut{ to{ opacity:0; visibility:hidden; } }
+html.no-motion #veil{ display:none !important; }
+@media (prefers-reduced-motion: reduce){ #veil{ display:none !important; } }
+
+/* ============ NAV ============ */
+header.nav{
+  position:fixed; top:0; left:0; right:0; z-index:90;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.1rem var(--gutter);
+  transition:background .3s ease, box-shadow .3s ease;
+}
+header.nav.scrolled{
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--line);
+}
+.wordmark{
+  font-family:var(--serif); font-size:1.28rem; font-weight:500; text-decoration:none;
+  letter-spacing:-.01em; display:inline-flex; align-items:baseline; gap:.42em;
+}
+.wordmark .bk{ font-family:var(--mono); color:var(--accent); font-weight:400; font-size:1.05em; }
+.nav-links{ display:flex; gap:1.9rem; align-items:baseline; }
+.nav-links a{
+  font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow);
+  text-transform:uppercase; text-decoration:none; color:var(--muted);
+  transition:color .2s ease;
+}
+.nav-links a:hover{ color:var(--accent); }
+.nav-links a.ext{ color:var(--faint); }
+@media (max-width: 860px){ .nav-links a.ext{ display:none; } .nav-links{ gap:1.1rem; } }
+@media (max-width: 700px){
+  header.nav{ position:absolute; flex-direction:column; align-items:flex-start; gap:.7rem; padding-top:1.2rem; padding-bottom:1rem; }
+  header.nav.scrolled{ background:transparent; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; }
+  .nav-links{ flex-wrap:wrap; gap:1rem 1.3rem; }
+}
+
+/* ============ HERO — short statement left, the form that named us right ============ */
+.hero{
+  position:relative; min-height:92vh; display:flex; flex-direction:column; justify-content:center;
+  padding-top:calc(var(--sec-pad) + 3rem); padding-bottom:var(--sec-pad);
+}
+#net{
+  position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;
+  -webkit-mask-image:radial-gradient(120% 90% at 72% 30%, #000 0%, transparent 68%);
+  mask-image:radial-gradient(120% 90% at 72% 30%, #000 0%, transparent 68%);
+}
+.hero-grid{
+  position:relative; z-index:1; display:grid; align-items:center;
+  grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr);
+  gap:clamp(2.5rem, 6vw, 6rem);
+}
+.hero-inner{ max-width:34rem; }
+.hero h1{ margin:1.5rem 0 1.6rem; font-weight:400; }
+.hero .lede{ max-width:30rem; color:var(--muted); }
+.cta-row{ display:flex; gap:1.6rem; align-items:center; margin-top:2.4rem; flex-wrap:wrap; }
+.btn{
+  font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow);
+  text-transform:uppercase; text-decoration:none; color:var(--ink);
+  border:1px solid var(--ink); padding:.85em 1.6em; transition:background .25s ease, color .25s ease;
+}
+.btn:hover{ background:var(--ink); color:var(--paper); }
+.link-quiet{
+  font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow);
+  text-transform:uppercase; color:var(--muted); text-decoration:none;
+  border-bottom:1px solid var(--line); padding-bottom:.35em; transition:color .2s ease, border-color .2s ease;
+}
+.link-quiet:hover{ color:var(--accent); border-color:var(--accent); }
+
+/* — the working form: Placeholder's origin as an interactive document — */
+.ph-doc{
+  justify-self:end; width:min(100%, 24rem);
+  background:var(--card); border:1px solid var(--line); box-shadow:var(--sheet);
+}
+.doc-head, .doc-foot{
+  display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  padding:.7rem 1.1rem; font-family:var(--mono); font-size:.62rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+}
+.doc-head span:first-child, .doc-foot span:first-child{ white-space:nowrap; }
+.doc-head span:last-child{ text-align:right; }
+.doc-head{ border-bottom:1px solid var(--line); }
+.doc-foot{ border-top:1px solid var(--line); padding-top:.65rem; padding-bottom:.65rem; }
+.doc-body{ padding:1.5rem 1.4rem 1.25rem; }
+.doc-label{
+  display:block; font-family:var(--mono); font-size:var(--eyebrow); font-weight:500;
+  letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint); margin-bottom:.7rem;
+}
+.doc-field{
+  display:flex; align-items:baseline; gap:.24em;
+  border-bottom:1px dashed rgba(29,26,20,.38); padding-bottom:.45rem;
+  transition:border-color .25s ease;
+}
+.doc-field:focus-within{ border-bottom-color:var(--accent); }
+.dbk{ font-family:var(--mono); font-size:1.5rem; line-height:1; color:var(--accent); transition:transform .3s cubic-bezier(.22,1,.36,1); }
+.doc-field:focus-within .dbk:first-child{ transform:translateX(-3px); }
+.doc-field:focus-within .dbk:last-child{ transform:translateX(3px); }
+#firmname{
+  flex:1; min-width:0; border:0; background:transparent; padding:0;
+  font-family:var(--serif); font-size:1.35rem; font-weight:500; color:var(--ink);
+  caret-color:var(--accent); outline:none;
+}
+#firmname::placeholder{ color:var(--faint); opacity:1; font-weight:400; font-style:italic; }
+.doc-note{
+  margin-top:.85rem; font-size:var(--small); line-height:1.5; color:var(--muted);
+  min-height:2.55em; transition:color .3s ease;
+}
+.doc-note.hit{ color:var(--accent); }
+.stamp{
+  color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  padding:.3em .6em; transform:rotate(-3deg); white-space:nowrap;
+}
+@media (max-width: 960px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .ph-doc{ justify-self:start; margin-top:.5rem; }
+}
+
+.stats{
+  display:flex; gap:clamp(2rem, 6vw, 5.5rem); margin-top:clamp(3rem, 7vw, 5.5rem);
+  padding-top:2rem; border-top:1px solid var(--line); flex-wrap:wrap; position:relative; z-index:1;
+}
+.stat .n{
+  font-family:var(--serif); font-size:var(--h3); font-weight:500; display:block; font-variant-numeric:tabular-nums;
+}
+.stat .l{ font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint); }
+
+/* ============ NAME BAND ============ */
+.name-band{ background:var(--bone); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.name-grid{ display:grid; grid-template-columns:minmax(90px, .8fr) 2.2fr; gap:clamp(1.5rem, 5vw, 4rem); align-items:center; }
+.giant-bk{
+  font-family:var(--mono); font-weight:400; color:var(--accent);
+  font-size:clamp(4.5rem, 11vw, 9rem); line-height:1; letter-spacing:-.05em; user-select:none;
+}
+.name-band p.big{
+  font-family:var(--serif); font-size:var(--h3); font-weight:400; line-height:1.45; max-width:38rem;
+}
+.name-band p.big strong{ font-weight:600; }
+@media (max-width: 620px){ .name-grid{ grid-template-columns:1fr; } .giant-bk{ font-size:4rem; } }
+
+/* ============ SECTION HEADERS ============ */
+.sec-head{ max-width:44rem; margin-bottom:clamp(2.5rem, 6vw, 4.5rem); }
+.sec-head h2{ margin-top:1.3rem; font-weight:400; }
+.sec-head .sub{ margin-top:1.1rem; color:var(--muted); max-width:36rem; }
+
+/* ============ THESIS ============ */
+.frameworks{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); box-shadow:var(--sheet); }
+.fw{
+  background:var(--card); padding:clamp(1.4rem, 3vw, 2.4rem);
+  text-decoration:none; display:flex; flex-direction:column; gap:.9rem; position:relative;
+  transition:background .25s ease;
+}
+.fw:hover{ background:#f8f6ec; }
+.fw .meta{ font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint); }
+.fw h3{ font-weight:400; transition:color .2s ease; }
+.fw:hover h3{ color:var(--accent); }
+.fw p{ color:var(--muted); font-size:var(--small); line-height:1.55; max-width:30rem; }
+.fw .arrow{ position:absolute; top:1.3rem; right:1.4rem; font-family:var(--mono); color:var(--faint); opacity:0; transform:translate(-4px,4px); transition:all .25s ease; }
+.fw:hover .arrow{ opacity:1; transform:none; color:var(--accent); }
+@media (max-width: 780px){ .frameworks{ grid-template-columns:1fr; } }
+.thesis-cta{ margin-top:2.2rem; }
+
+/* ============ PORTFOLIO — collapsible categories (native <details>/<summary>) ============ */
+.layer{ margin-bottom:clamp(1.4rem, 3.4vw, 2.2rem); }
+.layer[open]{ margin-bottom:clamp(2.6rem, 6vw, 4rem); }
+summary.layer-head{
+  display:flex; align-items:baseline; gap:1rem;
+  padding:0 0 1rem; border-bottom:1px solid var(--ink); margin-bottom:0; flex-wrap:wrap;
+  cursor:pointer; list-style:none; user-select:none;
+  transition:border-color .25s ease;
+}
+summary.layer-head::-webkit-details-marker{ display:none; }
+summary.layer-head:hover{ border-bottom-color:var(--accent); }
+summary.layer-head:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; }
+.layer-head h3{ font-size:var(--h4); font-family:var(--mono); font-weight:500; letter-spacing:.06em; text-transform:uppercase; transition:color .2s ease; }
+summary.layer-head:hover h3{ color:var(--accent); }
+.layer-head .desc{ font-size:var(--small); color:var(--faint); font-family:var(--mono); margin-right:auto; }
+.layer-head .layer-count{ font-family:var(--mono); font-size:var(--small); color:var(--faint); font-variant-numeric:tabular-nums; }
+.layer-head .layer-ind{ font-family:var(--mono); font-size:var(--small); color:var(--accent); white-space:nowrap; letter-spacing:.02em; }
+.layer:not([open]) .layer-ind::after{ content:"[\00a0+\00a0]"; }
+.layer[open] .layer-ind::after{ content:"[\00a0\2212\00a0]"; }
+@media (max-width:620px){ .layer-head .desc{ flex-basis:100%; margin:.3rem 0 0; order:3; } .layer-head .layer-count{ margin-left:auto; } }
+.nets{ display:grid; grid-template-columns:repeat(2, 1fr); column-gap:clamp(1.5rem, 4vw, 3.5rem); padding-top:.2rem; }
+@media (prefers-reduced-motion: no-preference){
+  .layer[open] > .nets{ animation:netsIn .28s cubic-bezier(.22,1,.36,1); }
+  @keyframes netsIn{ from{ opacity:0; transform:translateY(-6px); } to{ opacity:1; transform:none; } }
+}
+.net-row{
+  position:relative; display:flex; align-items:baseline; gap:.9rem;
+  padding:1.05rem .2rem; border-bottom:1px solid var(--line);
+  text-decoration:none; overflow:hidden;
+}
+.net-row .ghost{
+  position:absolute; right:.5rem; top:50%; transform:translateY(-42%) ;
+  font-family:var(--serif); font-weight:600; font-size:3.6rem; line-height:1;
+  color:var(--ink); opacity:0; transition:opacity .3s ease; pointer-events:none; user-select:none;
+}
+.net-row:hover .ghost{ opacity:.07; }
+.net-row .nm{ font-family:var(--serif); font-size:var(--h5); font-weight:500; white-space:nowrap; transition:color .2s ease; }
+a.net-row:hover .nm{ color:var(--accent); }
+.net-row .nt{ font-size:var(--small); color:var(--faint); line-height:1.4; }
+.net-row .go{ margin-left:auto; font-family:var(--mono); font-size:var(--small); color:var(--faint); opacity:0; transform:translateX(-4px); transition:all .25s ease; }
+a.net-row:hover .go{ opacity:1; transform:none; color:var(--accent); }
+@media (max-width: 780px){ .nets{ grid-template-columns:1fr; } .net-row .nt{ display:none; } }
+.pf-note{ font-family:var(--mono); font-size:var(--small); color:var(--faint); margin-top:2.4rem; }
+.pf-note a{ color:var(--muted); }
+
+/* ============ WRITING ============ */
+.writing{ background:var(--bone); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.essay-lead{
+  display:block; text-decoration:none; background:var(--card); border:1px solid var(--line);
+  padding:clamp(1.6rem, 4vw, 3rem); margin-bottom:1px; transition:background .25s ease;
+  box-shadow:var(--sheet);
+}
+.essay-lead:hover{ background:#f8f6ec; }
+.essay-lead h3{ font-size:var(--h2); font-weight:400; margin:.9rem 0 1rem; max-width:34ch; transition:color .2s ease; }
+.essay-lead:hover h3{ color:var(--accent); }
+.essay-lead p{ color:var(--muted); max-width:44rem; }
+.e-meta{ font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint); }
+.e-meta b{ color:var(--accent); font-weight:400; }
+.essay-list{ border:1px solid var(--line); border-top:0; background:var(--card); box-shadow:var(--sheet); }
+.essay-row{
+  display:grid; grid-template-columns:9.5rem 1fr auto; gap:1.4rem; align-items:baseline;
+  padding:1.35rem clamp(1.6rem, 4vw, 3rem); text-decoration:none;
+  border-bottom:1px solid var(--line); transition:background .25s ease;
+}
+.essay-row:last-child{ border-bottom:0; }
+.essay-row:hover{ background:#f8f6ec; }
+.essay-row .d{ font-family:var(--mono); font-size:var(--small); color:var(--faint); }
+.essay-row .t{ font-family:var(--serif); font-size:var(--h4); font-weight:400; line-height:1.3; transition:color .2s ease; }
+.essay-row:hover .t{ color:var(--accent); }
+.essay-row .a{ font-family:var(--mono); font-size:var(--small); color:var(--faint); white-space:nowrap; }
+@media (max-width: 780px){
+  .essay-row{ grid-template-columns:1fr; gap:.35rem; }
+  .essay-row .a{ white-space:normal; }
+}
+.writing-cta{ margin-top:2.4rem; }
+
+/* ============ TEAM — one bordered block: 3 principals over 4 team, shared grid + gutter ============ */
+.team-block{ border:1px solid var(--line); box-shadow:var(--sheet); }
+.partners{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border-bottom:1px solid var(--line); }
+.person{
+  background:var(--card); padding:clamp(1.4rem, 3vw, 2.2rem);
+  display:flex; flex-direction:column; gap:.7rem;
+}
+.person .role{ font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--accent); }
+.person h3{ font-size:var(--h3); font-weight:400; }
+.person p{ color:var(--muted); font-size:var(--small); line-height:1.55; }
+.person .tw{
+  margin-top:auto; padding-top:1rem; font-family:var(--mono); font-size:var(--small);
+  color:var(--faint); text-decoration:none; transition:color .2s ease;
+}
+.person .tw:hover{ color:var(--accent); }
+.team-small{ display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line); }
+.tm{ background:var(--card); padding:clamp(1.4rem, 3vw, 2.2rem); display:flex; flex-direction:column; gap:.4rem; }
+.tm .role{ font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow); text-transform:uppercase; color:var(--faint); display:block; margin-bottom:.2rem; }
+.tm .nm{ font-family:var(--serif); font-size:var(--h5); font-weight:500; }
+.tm p{ font-size:var(--small); color:var(--muted); margin-top:.35rem; line-height:1.5; }
+@media (max-width: 860px){ .partners{ grid-template-columns:1fr; } .team-small{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width: 480px){ .team-small{ grid-template-columns:1fr; } }
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--ink); color:var(--paper); position:relative; overflow:hidden;
+  padding:var(--sec-pad) var(--gutter) 3rem;
+}
+footer::after{ /* light tooth so the ink page reads as paper too */
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.22;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .96 0 0 0 0 .94 0 0 0 0 .88 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23m)'/%3E%3C/svg%3E");
+}
+footer .ghost-mark{
+  position:absolute; right:-.06em; bottom:-.22em; font-family:var(--mono);
+  font-size:clamp(12rem, 30vw, 26rem); line-height:1; color:#fff; opacity:.035;
+  pointer-events:none; user-select:none;
+}
+footer .mission{
+  font-family:var(--serif); font-weight:400; font-size:var(--h2); line-height:1.3;
+  max-width:34ch; margin-bottom:clamp(2.5rem, 6vw, 4.5rem);
+}
+footer .mission em{ font-style:italic; color:#d8a49b; }
+.foot-links{ display:flex; gap:2.4rem; flex-wrap:wrap; margin-bottom:3.5rem; }
+.foot-links a{
+  font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:var(--ls-eyebrow);
+  text-transform:uppercase; color:#b5ad9a; text-decoration:none; transition:color .2s ease;
+}
+.foot-links a:hover{ color:var(--paper); }
+.colophon{
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  padding-top:1.6rem; border-top:1px solid rgba(244,241,232,.16);
+  font-family:var(--mono); font-size:var(--eyebrow); letter-spacing:.08em; color:#b5ad9a;
+}
+
+/* ============ REVEALS — hidden state only under .anim (rAF-gated) ============ */
+.rv{ transition:opacity .7s ease, transform .7s ease; }
+html.anim .rv{ opacity:0; transform:translateY(18px); }
+html.anim .rv.in{ opacity:1; transform:none; }
+html.no-motion .rv{ opacity:1 !important; transform:none !important; transition:none !important; }
+@media (prefers-reduced-motion: reduce){
+  .rv{ transition:none; }
+  html.anim .rv{ opacity:1; transform:none; }
+}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:1000; background:var(--ink); color:var(--paper);
+  padding:.6em 1em; font-family:var(--mono); font-size:var(--small);
+}
+.skip:focus{ left:16px; top:16px; }
+</style>
+<script>
+/* intro gate — decided before first paint; storage set FIRST so a mid-intro reload still counts as seen */
+(function(){
+  try{
+    if (/[?&]static=1/.test(location.search)) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('ph-intro')) return;
+    sessionStorage.setItem('ph-intro','1');
+    document.documentElement.classList.add('intro');
+  }catch(e){ /* storage unavailable → skip the intro, never block the page */ }
+})();
+</script>
+</head>
+<body>
+<div id="veil" aria-hidden="true">
+  <div class="iv-mark"><span class="iv-bk">[</span><span class="iv-word">Placeholder</span><span class="iv-bk">]</span></div>
+</div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sb-badge">Storyboard</div>
+<div class="ribbon">Storyboard · concept redesign</div>
+
+<header class="nav" id="nav">
+  <a class="wordmark" href="#top" aria-label="Placeholder — home"><span class="bk">[</span>Placeholder<span class="bk">]</span></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#thesis">Thesis</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#writing">Writing</a>
+    <a href="#team">Team</a>
+    <a class="ext" href="https://twitter.com/placeholdervc" target="_blank" rel="noopener">@placeholdervc ↗</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap" id="top" aria-label="Introduction">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+      <div class="hero-inner">
+        <p class="eyebrow rv">A thesis-driven venture firm</p>
+        <h1 class="rv">Data, wealth, and power&nbsp;— <em>better distributed</em>.</h1>
+        <p class="lede rv">A New York venture firm investing in decentralized information networks since 2017 — managed by partners Joel Monegro and Chris Burniske.</p>
+        <div class="cta-row rv">
+          <a class="btn" href="#thesis">Read the thesis</a>
+          <a class="link-quiet" href="#writing">Browse the writing ↓</a>
+        </div>
+      </div>
+      <aside class="ph-doc rv" role="group" aria-label="Name of firm — an interactive nod to how Placeholder got its name">
+        <div class="doc-head"><span>Form PH-1</span><span>Certificate of Incorporation</span></div>
+        <div class="doc-body">
+          <label class="doc-label" for="firmname">Name of firm</label>
+          <div class="doc-field">
+            <span class="dbk" aria-hidden="true">[</span>
+            <input id="firmname" type="text" placeholder="placeholder" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="26">
+            <span class="dbk" aria-hidden="true">]</span>
+          </div>
+          <p class="doc-note" id="docnote" aria-live="polite">Left blank by the lawyers in 2017. The stand-in stuck.</p>
+        </div>
+        <div class="doc-foot"><span>New York</span><span class="stamp">[ est. 2017 ]</span></div>
+      </aside>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><span class="n">2017</span><span class="l">Founded, New York</span></div>
+      <div class="stat"><span class="n"><span data-count="75">75</span>+</span><span class="l">Companies &amp; networks</span></div>
+      <div class="stat"><span class="n"><span data-count="90">90</span>+</span><span class="l">Essays published</span></div>
+    </div>
+  </section>
+
+  <!-- ================= NAME ================= -->
+  <section class="name-band wrap" aria-label="The name">
+    <div class="name-grid">
+      <div class="giant-bk rv" aria-hidden="true">[&hairsp;]</div>
+      <div>
+        <p class="eyebrow rv">The name</p>
+        <p class="big rv" style="margin-top:1.2rem;">When the firm was incorporated, the founders couldn&rsquo;t agree on a name. Their lawyers wrote <strong>&ldquo;Placeholder&nbsp;Management&rdquo;</strong> in brackets as a stand-in. <em style="color:var(--accent)">It stuck.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THESIS ================= -->
+  <section class="wrap" id="thesis" aria-labelledby="thesis-h">
+    <div class="sec-head">
+      <p class="eyebrow rv">01 — Thesis</p>
+      <h2 id="thesis-h" class="rv">The thesis is <em>public</em>. It always has been.</h2>
+      <p class="sub rv">Placeholder&rsquo;s frameworks are published essays — read, cited, and argued with across the industry. These four shaped how a generation of investors thinks about cryptonetworks.</p>
+    </div>
+    <div class="frameworks">
+      <a class="fw rv" href="writing/fat-protocols.html">
+        <span class="meta">2016 · Joel Monegro</span>
+        <h3>Fat Protocols</h3>
+        <p>The most cited essay in crypto investing: why value concentrates at the protocol layer, inverting the web.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="fw rv" href="writing/cryptoasset-valuations.html">
+        <span class="meta">2017 · Chris Burniske</span>
+        <h3>Cryptoasset Valuations</h3>
+        <p>The valuation framework that gave institutions a way to price a new asset class.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="fw rv" href="writing/information-technology-market-cycles-a-brief-history.html">
+        <span class="meta">2018 · Joel Monegro</span>
+        <h3>Information Technology Market Cycles</h3>
+        <p>A brief history of computing&rsquo;s multi-decade cycles of expansion, consolidation, and decentralization.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="fw rv" href="writing/investment-thesis-summary.html">
+        <span class="meta">2018 · Monegro &amp; Burniske</span>
+        <h3>Investment Thesis Summary</h3>
+        <p>The firm&rsquo;s own summary of how and why it invests in cryptonetworks.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO ================= -->
+  <section class="wrap" id="portfolio" aria-labelledby="pf-h" style="padding-top:0;">
+    <div class="sec-head">
+      <p class="eyebrow rv">02 — Portfolio</p>
+      <h2 id="pf-h" class="rv">75+ investments across <em>every layer</em> of the stack.</h2>
+      <p class="sub rv">From base blockchains to the interfaces where networks meet their users. A selection of publicly confirmed positions:</p>
+    </div>
+
+    <details class="layer rv" open>
+      <summary class="layer-head"><h3>Layer 1</h3><span class="desc">Base blockchains — consensus, settlement, and blockspace</span><span class="layer-count">8</span><span class="layer-ind" aria-hidden="true"></span></summary>
+      <div class="nets">
+        <a class="net-row" href="https://ethereum.org" target="_blank" rel="noopener"><span class="ghost">E</span><span class="nm">Ethereum</span><span class="nt">The programmable settlement layer</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://solana.com" target="_blank" rel="noopener"><span class="ghost">S</span><span class="nm">Solana</span><span class="nt">High-performance global state machine</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://monad.xyz" target="_blank" rel="noopener"><span class="ghost">M</span><span class="nm">Monad</span><span class="nt">Parallelized EVM at full speed</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://aleo.org" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Aleo</span><span class="nt">Zero-knowledge private applications</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://saga.xyz" target="_blank" rel="noopener"><span class="ghost">S</span><span class="nm">Saga</span><span class="nt">Open blockspace for the multiverse</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://aptoslabs.com" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Aptos</span><span class="nt">Move-based high-throughput chain</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://avax.network" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Avalanche</span><span class="nt">Subnet-scalable consensus</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://decred.org" target="_blank" rel="noopener"><span class="ghost">D</span><span class="nm">Decred</span><span class="nt">Hybrid PoW/PoS — the first public investment</span><span class="go">↗</span></a>
+      </div>
+    </details>
+
+    <details class="layer rv">
+      <summary class="layer-head"><h3>Infrastructure</h3><span class="desc">Scaling, data availability, storage, oracles, and interop</span><span class="layer-count">15</span><span class="layer-ind" aria-hidden="true"></span></summary>
+      <div class="nets">
+        <a class="net-row" href="https://celestia.org" target="_blank" rel="noopener"><span class="ghost">C</span><span class="nm">Celestia</span><span class="nt">Modular data availability</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://zksync.io" target="_blank" rel="noopener"><span class="ghost">z</span><span class="nm">zkSync</span><span class="nt">ZK-rollup scaling for Ethereum</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://eclipse.xyz" target="_blank" rel="noopener"><span class="ghost">E</span><span class="nm">Eclipse</span><span class="nt">SVM rollup settling on Ethereum</span><span class="go">↗</span></a>
+        <span class="net-row"><span class="ghost">M</span><span class="nm">Movement</span><span class="nt">Move-powered modular rollups</span></span>
+        <a class="net-row" href="https://botanixlabs.com" target="_blank" rel="noopener"><span class="ghost">B</span><span class="nm">Botanix</span><span class="nt">EVM-equivalent Bitcoin L2</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://obol.org" target="_blank" rel="noopener"><span class="ghost">O</span><span class="nm">Obol</span><span class="nt">Distributed validator technology</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://polymerlabs.org" target="_blank" rel="noopener"><span class="ghost">P</span><span class="nm">Polymer</span><span class="nt">IBC interoperability for Ethereum</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://pokt.network" target="_blank" rel="noopener"><span class="ghost">P</span><span class="nm">Pocket Network</span><span class="nt">Decentralized RPC infrastructure</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://arweave.org" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Arweave</span><span class="nt">Permanent decentralized storage</span><span class="go">↗</span></a>
+        <span class="net-row"><span class="ghost">A</span><span class="nm">Astria</span><span class="nt">Shared sequencing network</span></span>
+        <a class="net-row" href="https://redstone.finance" target="_blank" rel="noopener"><span class="ghost">R</span><span class="nm">RedStone</span><span class="nt">Modular oracle infrastructure</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://agoric.com" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Agoric</span><span class="nt">JavaScript smart-contract platform</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://api3.org" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">API3</span><span class="nt">First-party oracle feeds</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://magic.link" target="_blank" rel="noopener"><span class="ghost">M</span><span class="nm">Magic</span><span class="nt">Passwordless wallet infrastructure</span><span class="go">↗</span></a>
+        <span class="net-row"><span class="ghost">A</span><span class="nm">Arx</span><span class="nt">Cryptographic hardware for physical assets</span></span>
+      </div>
+    </details>
+
+    <details class="layer rv">
+      <summary class="layer-head"><h3>DeFi</h3><span class="desc">Open financial protocols — exchange, credit, and liquidity</span><span class="layer-count">10</span><span class="layer-ind" aria-hidden="true"></span></summary>
+      <div class="nets">
+        <a class="net-row" href="https://0x.org" target="_blank" rel="noopener"><span class="ghost">0</span><span class="nm">0x</span><span class="nt">Open exchange infrastructure</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://balancer.fi" target="_blank" rel="noopener"><span class="ghost">B</span><span class="nm">Balancer</span><span class="nt">Programmable liquidity pools</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://gearbox.fi" target="_blank" rel="noopener"><span class="ghost">G</span><span class="nm">Gearbox</span><span class="nt">Composable onchain leverage</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://gyro.finance" target="_blank" rel="noopener"><span class="ghost">G</span><span class="nm">Gyroscope</span><span class="nt">All-weather stablecoin design</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://kamino.finance" target="_blank" rel="noopener"><span class="ghost">K</span><span class="nm">Kamino</span><span class="nt">Solana&rsquo;s lending and liquidity hub</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://orca.so" target="_blank" rel="noopener"><span class="ghost">O</span><span class="nm">Orca</span><span class="nt">Concentrated-liquidity DEX on Solana</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://solend.fi" target="_blank" rel="noopener"><span class="ghost">S</span><span class="nm">Solend</span><span class="nt">Lending markets on Solana</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://squads.so" target="_blank" rel="noopener"><span class="ghost">S</span><span class="nm">Squads</span><span class="nt">Smart account standard for Solana</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://nftfi.com" target="_blank" rel="noopener"><span class="ghost">N</span><span class="nm">NFTfi</span><span class="nt">NFT-collateralized lending</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://avantgarde.finance" target="_blank" rel="noopener"><span class="ghost">A</span><span class="nm">Avantgarde</span><span class="nt">Onchain asset management</span><span class="go">↗</span></a>
+      </div>
+    </details>
+
+    <details class="layer rv">
+      <summary class="layer-head"><h3>Apps &amp; Consumer</h3><span class="desc">The interfaces where networks meet their users</span><span class="layer-count">6</span><span class="layer-ind" aria-hidden="true"></span></summary>
+      <div class="nets">
+        <a class="net-row" href="https://jito.network" target="_blank" rel="noopener"><span class="ghost">J</span><span class="nm">Jito</span><span class="nt">MEV-powered liquid staking on Solana</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://tensor.trade" target="_blank" rel="noopener"><span class="ghost">T</span><span class="nm">Tensor</span><span class="nt">Solana&rsquo;s pro NFT exchange</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://zerion.io" target="_blank" rel="noopener"><span class="ghost">Z</span><span class="nm">Zerion</span><span class="nt">The onchain wallet interface</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://backpack.app" target="_blank" rel="noopener"><span class="ghost">B</span><span class="nm">Backpack</span><span class="nt">Wallet and exchange for everything crypto</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://tally.xyz" target="_blank" rel="noopener"><span class="ghost">T</span><span class="nm">Tally</span><span class="nt">Onchain governance interface</span><span class="go">↗</span></a>
+        <a class="net-row" href="https://weatherxm.com" target="_blank" rel="noopener"><span class="ghost">W</span><span class="nm">WeatherXM</span><span class="nt">Community-owned weather network</span><span class="go">↗</span></a>
+      </div>
+    </details>
+
+    <p class="pf-note rv">A selection of publicly confirmed investments — not the full book. Complete activity at <a href="https://www.placeholder.vc" target="_blank" rel="noopener">placeholder.vc</a>.</p>
+  </section>
+
+  <!-- ================= WRITING ================= -->
+  <section class="writing wrap" id="writing" aria-labelledby="wr-h">
+    <div class="sec-head">
+      <p class="eyebrow rv">03 — Writing</p>
+      <h2 id="wr-h" class="rv">The research <em>is</em> the firm.</h2>
+      <p class="sub rv">Ninety-plus essays on token economics, governance, and market structure — published in the open since 2017.</p>
+    </div>
+
+    <a class="essay-lead rv" href="writing/leveling-the-stakes-on-solana.html">
+      <span class="e-meta"><b>Latest</b> · Sep 2025 · Gurnoor Narula · Network deep-dives · 15 min</span>
+      <h3>Leveling the Stakes on Solana</h3>
+      <p>The process of updating Solana has waterfall effects on Solana&rsquo;s incentive design, validator economics, and therefore, validator set equity.</p>
+    </a>
+    <div class="essay-list rv">
+      <a class="essay-row" href="writing/revisiting-l1-tokens-as-money-a-critique-of-monetary-premium.html">
+        <span class="d">Jun 2025</span><span class="t">Revisiting L1 Tokens as Money: A Critique of &lsquo;Monetary Premium&rsquo;</span><span class="a">Mario Laul · 12 min</span>
+      </a>
+      <a class="essay-row" href="writing/combined-metrics-for-tracking-smart-contract-networks.html">
+        <span class="d">Apr 2025</span><span class="t">Combined Metrics for Tracking Smart Contract Networks</span><span class="a">Mario Laul · 19 min</span>
+      </a>
+      <a class="essay-row" href="writing/introducing-the-sequencing-value-accrual-simulator.html">
+        <span class="d">Feb 2025</span><span class="t">Introducing the Sequencing Value Accrual Simulator</span><span class="a">Gurnoor Narula</span>
+      </a>
+      <a class="essay-row" href="writing/the-cryptopreneurs-dilemma.html">
+        <span class="d">Dec 2024</span><span class="t">The Cryptopreneur&rsquo;s Dilemma</span><span class="a">Mario Laul · 4 min</span>
+      </a>
+      <a class="essay-row" href="writing/ethereum-and-solana.html">
+        <span class="d">Oct 2023</span><span class="t">Ethereum and Solana</span><span class="a">Joel Monegro · 4 min</span>
+      </a>
+    </div>
+    <div class="writing-cta rv">
+      <a class="link-quiet" href="writing/">Browse all 94 essays in the library →</a>
+    </div>
+  </section>
+
+  <!-- ================= TEAM ================= -->
+  <section class="wrap" id="team" aria-labelledby="tm-h">
+    <div class="sec-head">
+      <p class="eyebrow rv">04 — Team</p>
+      <h2 id="tm-h" class="rv">The people behind the <em>thesis</em>.</h2>
+    </div>
+    <div class="team-block rv">
+    <div class="partners">
+      <div class="person">
+        <span class="role">Partner &amp; Co-founder</span>
+        <h3>Joel Monegro</h3>
+        <p>Author of Fat Protocols — the most cited framework in crypto investing. Developed USV&rsquo;s early crypto thesis before founding Placeholder in 2017.</p>
+        <a class="tw" href="https://twitter.com/jmonegro" target="_blank" rel="noopener">@jmonegro ↗</a>
+      </div>
+      <div class="person">
+        <span class="role">Partner &amp; Co-founder</span>
+        <h3>Chris Burniske</h3>
+        <p>Co-author of Cryptoassets — the book that taught Wall Street to price crypto. Led ARK Invest to become the first public fund manager to invest in Bitcoin.</p>
+        <a class="tw" href="https://twitter.com/cburniske" target="_blank" rel="noopener">@cburniske ↗</a>
+      </div>
+      <div class="person">
+        <span class="role">Venture Partner</span>
+        <h3>Brad Burnham</h3>
+        <p>Co-founder of Union Square Ventures — early in Twitter, Coinbase, Etsy, and Tumblr. Part of Placeholder since its founding.</p>
+        <a class="tw" href="https://twitter.com/BradUSV" target="_blank" rel="noopener">@BradUSV ↗</a>
+      </div>
+    </div>
+    <div class="team-small">
+      <div class="tm"><span class="role">Head of Research</span><span class="nm">Mario Laul</span><p>Frames blockchains as automated bureaucracies.</p></div>
+      <div class="tm"><span class="role">Analyst</span><span class="nm">Gurnoor Narula</span><p>Quantitative work on validator economics and sequencing.</p></div>
+      <div class="tm"><span class="role">General Manager</span><span class="nm">Shelly Gogol</span><p>Runs the firm.</p></div>
+      <div class="tm"><span class="role">Operations</span><span class="nm">Crystal Kwan</span><p>Keeps everything moving.</p></div>
+    </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer aria-label="Footer">
+  <div class="ghost-mark" aria-hidden="true">[&hairsp;]</div>
+  <p class="mission rv">We work with entrepreneurs and decentralized information networks to better distribute <em>data, wealth, and power</em>.</p>
+  <div class="foot-links rv">
+    <a href="https://twitter.com/placeholdervc" target="_blank" rel="noopener">Twitter ↗</a>
+    <a href="https://jobs.placeholder.vc" target="_blank" rel="noopener">Jobs ↗</a>
+    <a href="writing/">Writing</a>
+    <a href="https://www.placeholder.vc" target="_blank" rel="noopener">placeholder.vc ↗</a>
+  </div>
+  <div class="colophon">
+    <span>© Placeholder Management · New York</span>
+    <span>[ est. 2017 ]</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html = document.documentElement;
+  var staticMode = /[?&]static=1/.test(location.search);
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (staticMode) html.classList.add('no-motion');
+
+  /* ---- intro veil: CSS animates it end-to-end; JS only cleans up (page can never stay covered) ---- */
+  var veil = document.getElementById('veil');
+  var introOn = html.classList.contains('intro');
+  if (veil && introOn){
+    var cleared = false;
+    var clearVeil = function(){
+      if (cleared) return; cleared = true;
+      html.classList.remove('intro');
+      if (veil.parentNode) veil.parentNode.removeChild(veil);
+    };
+    veil.addEventListener('animationend', function(e){ if (e.animationName === 'veilOut') clearVeil(); });
+    setTimeout(clearVeil, 3600); /* belt & braces */
+  } else if (veil){
+    veil.parentNode.removeChild(veil);
+  }
+
+  /* ---- nav hairline ---- */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', scrollY > 24); }
+  addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+  /* ---- reveals: hidden state only ever applied inside rAF (never blank in headless);
+          when the intro plays, reveals start just before the veil dissolves so the page rises through it ---- */
+  function initReveals(){
+    if (staticMode || reduce || !('IntersectionObserver' in window)) return;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      html.classList.add('anim');
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
+      document.querySelectorAll('.rv').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < innerHeight * 0.92) el.classList.add('in'); /* above-the-fold: visible immediately */
+        else io.observe(el);
+      });
+    });});
+  }
+  if (introOn){ setTimeout(initReveals, 1650); } else { initReveals(); }
+
+  /* ---- the working form: type a better name, we dare you ---- */
+  var inp = document.getElementById('firmname');
+  var note = document.getElementById('docnote');
+  if (inp && note){
+    var MSG_DEF = 'Left blank by the lawyers in 2017. The stand-in stuck.';
+    var MSG_TRY = 'A fine name. The founders couldn’t agree on one either.';
+    var MSG_HIT = 'Exactly. It stuck.';
+    var updNote = function(){
+      var v = inp.value.trim().toLowerCase();
+      if (!v){ note.textContent = MSG_DEF; note.classList.remove('hit'); }
+      else if (v === 'placeholder' || v === 'placeholder management'){ note.textContent = MSG_HIT; note.classList.add('hit'); }
+      else { note.textContent = MSG_TRY; note.classList.remove('hit'); }
+    };
+    inp.addEventListener('input', updNote);
+    inp.addEventListener('blur', function(){ if (!inp.value.trim()){ inp.value = ''; updNote(); } });
+  }
+
+  /* ---- first real input gate (headless captures always see finished state) ---- */
+  var hasInput = false, inputCbs = [];
+  function onFirst(){ if (hasInput) return; hasInput = true; inputCbs.forEach(function(f){ f(); }); }
+  ['pointermove','pointerdown','scroll','keydown','touchstart','wheel'].forEach(function(ev){
+    addEventListener(ev, onFirst, { once:true, passive:true });
+  });
+
+  /* ---- count-up stats: final values live in markup; animate only after real input ---- */
+  if (!staticMode && !reduce){
+    inputCbs.push(function(){
+      document.querySelectorAll('[data-count]').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.bottom < 0) return; /* already passed */
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var t0 = null;
+        function step(t){
+          if (!t0) t0 = t;
+          var k = Math.min((t - t0) / 900, 1);           /* clamp — stops at 100% */
+          k = 1 - Math.pow(1 - k, 3);
+          el.textContent = Math.round(target * k);
+          if (k < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  }
+
+  /* ---- seeded network-field hero: drawn synchronously (identical every load), drifts after input ---- */
+  var c = document.getElementById('net');
+  if (c && c.getContext){
+    var ctx = c.getContext('2d');
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    var W = 0, H = 0, nodes = [], EDGE = 150, running = false;
+    var seed = 20170101;
+    function rnd(){ seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+    function size(){
+      var r = c.parentElement.getBoundingClientRect();
+      W = r.width; H = r.height;
+      c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function init(){
+      nodes = []; seed = 20170101;
+      var n = Math.max(34, Math.round(W * H / 24000));
+      for (var i = 0; i < n; i++){
+        nodes.push({
+          x: rnd() * W, y: rnd() * H,
+          vx: (rnd() - .5) * .16, vy: (rnd() - .5) * .16,
+          a: i % 17 === 0            /* sparse accent nodes — stays inside the 5% budget */
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < nodes.length; i++){
+        for (var j = i + 1; j < nodes.length; j++){
+          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+          var d2 = dx * dx + dy * dy;
+          if (d2 < EDGE * EDGE){
+            var o = (1 - Math.sqrt(d2) / EDGE) * 0.085;
+            ctx.strokeStyle = 'rgba(29,26,20,' + o.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < nodes.length; k++){
+        var nd = nodes[k];
+        ctx.fillStyle = nd.a ? 'rgba(143,45,36,.42)' : 'rgba(29,26,20,.20)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, nd.a ? 2.1 : 1.5, 0, 6.2832); ctx.fill();
+      }
+    }
+    function tick(){
+      if (!running) return;
+      for (var i = 0; i < nodes.length; i++){
+        var nd = nodes[i];
+        nd.x += nd.vx; nd.y += nd.vy;
+        if (nd.x < -8) nd.x = W + 8; if (nd.x > W + 8) nd.x = -8;
+        if (nd.y < -8) nd.y = H + 8; if (nd.y > H + 8) nd.y = -8;
+      }
+      draw();
+      requestAnimationFrame(tick);
+    }
+    size(); init(); draw();               /* synchronous first paint — never blank */
+    if (!staticMode && !reduce){
+      inputCbs.push(function(){
+        if (running) return; running = true; requestAnimationFrame(tick);
+      });
+      document.addEventListener('visibilitychange', function(){
+        if (document.hidden){ running = false; }
+        else if (hasInput){ running = true; requestAnimationFrame(tick); }
+      });
+    }
+    var rt;
+    addEventListener('resize', function(){
+      clearTimeout(rt);
+      rt = setTimeout(function(){ size(); init(); draw(); }, 150);
+    });
+  }
+})();
+</script>
+<style>.ribbon,.sb-badge{display:none!important}body{padding-bottom:44px!important}.angara-disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:2147483647;background:#1a1a1a;color:#f4f1e8;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:center;padding:9px 16px}.angara-disclaimer a{color:#f4f1e8;text-decoration:underline}</style><div class="angara-disclaimer">Unsolicited concept redesign by Angara &mdash; not affiliated with Placeholder. <a href="https://www.placeholder.vc" target="_blank" rel="noopener">See the official site &rarr;</a></div>
+</body>
+</html>
+
+<style>.ribbon,.sb-badge{display:none!important}</style>

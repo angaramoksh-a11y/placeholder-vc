@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eclipse: the Best of Solana, Ethereum, and Celestia — Placeholder</title>
+<meta name="description" content="One way to think of the design choices within the layers is the lower down the stack we go, the more we need small machines to be able to verify the truth.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f4f1e8'/%3E%3Cpath d='M18 14h10v6h-4v24h4v6H18zM46 14H36v6h4v24h-4v6h10z' fill='%238f2d24'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Eclipse: the Best of Solana, Ethereum, and Celestia","datePublished":"2024-07-30","author":[{"@type":"Person","name":"Chris Burniske"}],"publisher":{"@type":"Organization","name":"Placeholder"},"mainEntityOfPage":"https://www.placeholder.vc/blog/2024/7/30/eclipse-thesis-combining-the-best-of-solana-ethereum-and-celestia"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sb-badge">Storyboard</div>
+<div class="ribbon">Storyboard · concept redesign</div>
+<header class="nav" id="nav">
+  <a class="wordmark" href="../index.html" aria-label="Placeholder — home"><span class="bk">[</span>Placeholder<span class="bk">]</span></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="../index.html#thesis">Thesis</a>
+    <a href="../index.html#portfolio">Portfolio</a>
+    <a href="../writing/" aria-current="page">Writing</a>
+    <a href="../index.html#team">Team</a>
+    <a class="ext" href="https://twitter.com/placeholdervc" target="_blank" rel="noopener">@placeholdervc ↗</a>
+  </nav>
+</header>
+<main id="main">
+  <section class="wrap page-head" style="padding-bottom:1.5rem;">
+    <a class="back-link" href="./">← Writing</a>
+    <p class="eyebrow rv" style="margin-top:1.6rem;">Network Deep-Dives</p>
+    <h1 class="rv" style="max-width:24ch;">Eclipse: the Best of Solana, Ethereum, and Celestia</h1>
+  </section>
+  <section class="wrap post-wrap">
+    <aside class="meta-rail rv">
+      <dl>
+        <div><dt>Author</dt><dd>Chris Burniske</dd></div>
+        <div><dt>Published</dt><dd>Jul 30, 2024</dd></div>
+        <div><dt>Read</dt><dd>4 min</dd></div>
+        <div class="src">
+          <a href="https://www.placeholder.vc/blog/2024/7/30/eclipse-thesis-combining-the-best-of-solana-ethereum-and-celestia" target="_blank" rel="noopener">Read original ↗</a>
+          <a href="https://twitter.com/intent/tweet?text=Eclipse%3A%20the%20Best%20of%20Solana%2C%20Ethereum%2C%20and%20Celestia%20%E2%80%94%20Placeholder&url=https%3A%2F%2Fwww.placeholder.vc%2Fblog%2F2024%2F7%2F30%2Feclipse-thesis-combining-the-best-of-solana-ethereum-and-celestia" target="_blank" rel="noopener">Share on X ↗</a>
+        </div>
+      </dl>
+    </aside>
+    <article class="post-body"><p>In 2017, two years after its mainnet launch, Ethereum’s smart contract environment captured global interest as a substrate from which open-source protocols and organizations could be launched and operated. Contracts written in Solidity were executed through the Ethereum Virtual Machine (EVM) and Initial Coin Offerings (ICOs) were the topic du jour as developers and users experimented with what was possible. </p><p>In the bear market of 2018-2020, the EVM cemented its dominance as new smart-contract environments launched with Ethereum’s standard. Some of the most notable examples to emerge from that era are Avalanche, Binance Smart Chain (BSC), and Polygon, all of which launched their own integrated smart-contract environments that employed the EVM. </p><p>Given the integrated designs of that era, these alternative EVM networks went through the heavy-lift of standing up entirely new validator sets to support their version of the EVM, as opposed to tapping into Ethereum’s pre-existing, decentralized hardware ecosystem. Ask anyone who’s coordinated the launch of a significantly decentralized validator set, and they’ll tell you it’s far from easy to establish and maintain. This heavier lift slowed the proliferation of these alternative EVM environments, but nonetheless, they grew to house their own ecosystem of developers, users, validators, and more. </p><p>In 2021, one year after its mainnet launch, Solana rose to prominence, offering an alternative execution environment to the EVM, through the Solana Virtual Machine (SVM). Contracts written in Rust were executed through the SVM, with transaction speeds and costs benefitting from the SVM’s modernized design. At first, progress was slow. An entirely new set of developer tooling was required to support the SVM, though it did benefit from pre-existing awareness of Rust. Once it became clear that the SVM was a worthy complement to the EVM, developer tooling and activity around Solana began to snowball. </p><p>Fast-forward to 2024, and Solana is now widely recognized as the most credible <a href="./ethereum-and-solana.html">complement</a> to Ethereum, with fees, users, and DEX volumes rivaling, if not surpassing, Ethereum’s. Just as the EVM began to proliferate beyond Ethereum once Ethereum’s widespread success was recognized, so too are we seeing the SVM begin to proliferate beyond Solana as its own success is realized. But the proliferation of the SVM is happening a cycle later, in the <a href="./rollups-as-virtual-blockchains-in-the-modular-era.html">modular era</a> of blockchain design. </p><p>In the modular era, the SVM no longer requires integrated networks with their own validator sets to expand beyond Solana, but can instead do so via layer-2s (L2) that perform execution, but then plug-and-play their preferred consensus and data-availability solutions, outsourcing much of the heavy-lift of decentralized hardware. <em>Given the lighter lift required, we expect the SVM to spread even more quickly than the EVM initially did, and for the two virtual machine standards to rival each other in developer mindshare, user numbers, and aggregate value. </em></p><p>During this evolution, the premier SVM L2 to watch in our opinion is <a href="https://www.eclipse.xyz/" target="_blank" rel="noopener">Eclipse</a>, Ethereum’s fastest L2. Eclipse has chosen Celestia for data availability and Ethereum for consensus and settlement. These design choices mean Eclipse will have extremely fast and cheap transactions through the SVM, while tapping into Celestia’s leading data availability layer for economical and easily verifiable publishing of transaction data. By choosing Ethereum for settlement of its executed transactions, Eclipse offers Ethereum assets and users an easy way to experiment with SVM-applications.</p><p>One way to think of the design choices within the layers is the lower down the stack we go, the more we need small machines to be able to verify the truth. By ‘small machines’ we mean a set of requirements that are widely achievable, allowing nearly anyone to verify the truth if they so desire, keeping collusion at bay. So long as these smaller machines are publishing and verifying “the truth,” then bigger machines can run execution at levels higher up the stack, achieving greater performance but not sacrificing decentralization where it matters. <em>Intriguingly, this design means Eclipse’s transaction throughput capacity could surpass that of the Solana L1, allowing it to be home to a diverse ecosystem of its own. </em></p><p>That is the technical front; on the social front, there are a few other interesting outcomes of Eclipse’s design choices. One, since it runs the SVM, developers who may feel intimidated or crowded out by large protocol teams with significant headstarts on Solana can experiment with Eclipse as a greenfield SVM. At the same time, since Eclipse uses Ethereum for settlement, it will have easy access to Ethereum’s significant base of existing assets and inherit Ethereum-backed re-org protection. Solana application builders may be intrigued to launch their applications that already exist on Solana to entice these users and assets, while Ethereum users may be pulled to try an SVM environment on their home turf. One could even think of Eclipse as a Solana Embassy in the Nation of Ethereum. </p><p>Eclipse has been working on an SVM L2 for Ethereum longer than any other team, is the first to mainnet, and is led by industry veteran, <a href="https://twitter.com/0xLitquidity" target="_blank" rel="noopener">Vijay Chetty</a>, who previously led business development and growth at dYdX, before moving on to do the same at Uniswap. Vijay’s experience at some of crypto’s most successful applications makes him well-suited to understand the needs of application developers. Meanwhile, he’s flanked by <a href="https://twitter.com/0xtaetaehoho" target="_blank" rel="noopener">Terry Chung</a>, <a href="https://www.linkedin.com/in/0xdlin/" target="_blank" rel="noopener">David Lin</a>, and <a href="https://www.linkedin.com/in/nathan-cha-432a53bb/" target="_blank" rel="noopener">Nathan Cha</a>—who lead strategy, engineering, and growth, respectively. As the earliest team to launch an SVM L2 on Ethereum, Eclipse is poised to be the category leader, with <a href="https://x.com/EclipseFND/status/1818285443491991678" target="_blank" rel="noopener">mainnet opening for developers today</a>. Dive into the docs, <a href="https://docs.eclipse.xyz/" target="_blank" rel="noopener">here</a>. </p></article>
+  </section>
+  <section class="related wrap" aria-label="Related essays">
+    <p class="eyebrow rv">More on Network Deep-Dives</p>
+    <div class="related-grid rv">
+      <a class="rc" href="./leveling-the-stakes-on-solana.html">
+        <span class="d">Sep 15, 2025</span>
+        <h3>Leveling the Stakes on Solana</h3>
+        <span class="a">Gurnoor Narula</span>
+      </a>
+      <a class="rc" href="./introducing-the-sequencing-value-accrual-simulator.html">
+        <span class="d">Feb 19, 2025</span>
+        <h3>Introducing the Sequencing Value Accrual Simulator</h3>
+        <span class="a">Gurnoor Narula</span>
+      </a>
+      <a class="rc" href="./a-visual-guide-to-sequencing-mechanisms.html">
+        <span class="d">Feb 13, 2025</span>
+        <h3>A Visual Guide to Sequencing Mechanisms</h3>
+        <span class="a">Gurnoor Narula</span>
+      </a>
+    </div>
+  </section>
+</main>
+<footer aria-label="Footer">
+  <div class="ghost-mark" aria-hidden="true">[&hairsp;]</div>
+  <p class="mission rv">We work with entrepreneurs and decentralized information networks to better distribute <em>data, wealth, and power</em>.</p>
+  <div class="foot-links rv">
+    <a href="https://twitter.com/placeholdervc" target="_blank" rel="noopener">Twitter ↗</a>
+    <a href="https://jobs.placeholder.vc" target="_blank" rel="noopener">Jobs ↗</a>
+    <a href="../writing/">Writing</a>
+    <a href="https://www.placeholder.vc" target="_blank" rel="noopener">placeholder.vc ↗</a>
+  </div>
+  <div class="colophon"><span>© Placeholder Management · New York</span><span>[ est. 2017 ]</span></div>
+</footer>
+<script>
+(function(){var html=document.documentElement;var staticMode=/[?&]static=1/.test(location.search);var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;if(staticMode)html.classList.add('no-motion');
+var nav=document.getElementById('nav');function onScroll(){nav.classList.toggle('scrolled',scrollY>24);}addEventListener('scroll',onScroll,{passive:true});onScroll();
+if(!(staticMode||reduce||!('IntersectionObserver'in window))){requestAnimationFrame(function(){requestAnimationFrame(function(){html.classList.add('anim');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -4% 0px'});document.querySelectorAll('.rv').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*0.92)el.classList.add('in');else io.observe(el);});});});}
+})();</script>
+<style>.ribbon,.sb-badge{display:none!important}body{padding-bottom:44px!important}.angara-disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:2147483647;background:#1a1a1a;color:#f4f1e8;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:center;padding:9px 16px}.angara-disclaimer a{color:#f4f1e8;text-decoration:underline}</style><div class="angara-disclaimer">Unsolicited concept redesign by Angara &mdash; not affiliated with Placeholder. <a href="https://www.placeholder.vc" target="_blank" rel="noopener">See the official site &rarr;</a></div>
+</body>
+</html>
+<style>.ribbon,.sb-badge{display:none!important}</style>
